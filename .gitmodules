@@ -1,0 +1,3 @@
+[submodule "src/main/java/pi2tut/solutions"]
+	path = src/main/java/pi2tut/solutions
+	url = https://github.com/vexplained/Uni-PI2-TutSS26-Private.git
