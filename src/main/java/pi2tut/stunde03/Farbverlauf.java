@@ -7,19 +7,19 @@ public class Farbverlauf {
 		return Color.HSBtoRGB((float) colorPercent, 1, 1);
 	}
 
-	public static int createColor() {
+	public int createColor() {
 		return 0x39E4FF;
 	}
 
-	public static int[] createColorArray() {
+	public int[] createColorArray() {
 		return null;
 	}
 
-	public static int[][] createColorArray2() {
+	public int[][] createColorArray2() {
 		return null;
 	}
 
 	static void main() {
-		GUI.main(null);
+		GUI.createGUI(new Farbverlauf());
 	}
 }

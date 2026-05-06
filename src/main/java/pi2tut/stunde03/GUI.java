@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,14 +15,12 @@ public class GUI {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	public static void createGUI(Farbverlauf farbverlauf)
+	{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI window = new GUI();
+					GUI window = new GUI(farbverlauf);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,32 +30,39 @@ public class GUI {
 	}
 
 	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		createGUI(new Farbverlauf());
+	}
+
+	/**
 	 * Create the application.
 	 */
-	public GUI() {
-		initialize();
+	public GUI(Farbverlauf farbverlauf) {
+		initialize(farbverlauf);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Farbverlauf farbverlauf) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 600, 200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
 		ColorPanel panelGradient;
-		if(Farbverlauf.createColorArray2() != null)
+		if(farbverlauf.createColorArray2() != null)
 		{
-			panelGradient = new ColorPanel2(Farbverlauf.createColorArray2());
+			panelGradient = new ColorPanel2(farbverlauf.createColorArray2());
 		}
-		else if(Farbverlauf.createColorArray() != null)
+		else if(farbverlauf.createColorArray() != null)
 		{
-			panelGradient = new ColorPanel(Farbverlauf.createColorArray());
+			panelGradient = new ColorPanel(farbverlauf.createColorArray());
 		} else
 		{
-			panelGradient = new ColorPanel(Farbverlauf.createColor());
+			panelGradient = new ColorPanel(farbverlauf.createColor());
 		}
 		frame.getContentPane().add(panelGradient, BorderLayout.CENTER);
 	}
@@ -66,6 +71,7 @@ public class GUI {
 
 class ColorPanel extends JPanel
 {
+	@Serial
 	private static final long serialVersionUID = -2333706372925095740L;
 	
 	private int[] colorArray;
@@ -98,6 +104,7 @@ class ColorPanel extends JPanel
 
 class ColorPanel2 extends ColorPanel
 {
+	@Serial
 	private static final long serialVersionUID = -2333706372925095740L;
 
 	private int[][] colorArray;
